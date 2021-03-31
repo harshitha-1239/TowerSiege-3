@@ -14,6 +14,9 @@ constructor(bodyA,pointB){
 fly(){
 this.string.bodyA=null;
 }
+attach(body){
+    this.string.bodyA=body;
+}
 
 display(){
     if(this.string.bodyA){
