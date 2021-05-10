@@ -9,9 +9,15 @@ var stand1,stand2;
 var ball;
 var slingShot;
 var polygon_img;
+var getbackgroundimage;
+var backgroundImg;
+  
+var score=0;
 
 function preload(){
     polygon_img=loadImage("polygon.png");
+    getbackgroundimage();
+
 
 }
 
@@ -69,11 +75,14 @@ function setup(){
 
 }
 function draw() {
-  background(56,44,44); 
+  if(backgroundImg){
+    background(backgroundImg);
+  }
   Engine.update(engine);
   textSize(20);
   fill("lightyellow");
   text("Drag the Hexagonal Stone and Release it, to launch it towards the blocks",100,30);
+  text("SCORE : "+score,750,40);
 
   ground.display();
   stand1.display();
@@ -117,6 +126,33 @@ function draw() {
   image(polygon_img ,ball.position.x,ball.position.y,40,40);
 
   slingShot.display();
+  block1.score();
+  block2.score();
+  block3.score();
+  block4.score();
+  block5.score();
+  block6.score();
+  block7.score();
+  block8.score();
+  block9.score();
+  block10.score();
+  block11.score();
+  block12.score();
+  block13.score();
+  block14.score();
+  block15.score();
+  block16.score();
+
+  blocks1.score();
+  blocks2.score();
+  blocks3.score();
+  blocks4.score();
+  blocks5.score();
+  blocks6.score();
+  blocks7.score();
+  blocks8.score();
+  blocks9.score();
+
 }
 function mouseDragged(){
   Matter.Body.setPosition(this.ball,{x:mouseX,y:mouseY});
@@ -129,5 +165,26 @@ function keyPressed(){
   if(keyCode===32){
     slingShot.attach(this.ball);
   }
+}
+
+async function getbackgroundimage(){
+  var response = await fetch ("http://worldtimeapi.org/api/timezone/Asia/Kolkata");
+  var responseJSON=await response.json();
+
+  var datetime=responseJSON.datetime;
+  console.log(datetime);
+  var hour=datetime.slice(11,13);
+
+  if(hour>=06 && hour<=19){
+    bg="Doc/bg.png"
+  }
+  else{
+    bg="Doc/bg2.png"
+  }
+  backgroundImg=loadImage(bg);
+    console.log(backgroundImg);
+    
+
+
 }
 
