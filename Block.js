@@ -12,6 +12,11 @@ constructor(x,y,width,height){
     World.add(world,this.body);
 }
 
+score(){
+    if(this.visibility<0 && this.visibility>-105)
+    score++;
+}
+
 display(){
     if(this.body.speed<3){
     var angle=this.body.angle;
@@ -29,6 +34,10 @@ display(){
         this.visibility=this.visibility-5;
         pop();
     }
+
+    
+
+    
 }
 
 
